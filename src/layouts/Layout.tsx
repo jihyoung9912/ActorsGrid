@@ -1,26 +1,32 @@
 import { PropsWithChildren } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import Navbar from 'components/Navbar/Navbar';
 
-const MainContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
 `;
 
-const Content = styled.div`
+/*
+ * Limit 1300px to make user-friendly UI
+ * There may be so many pictures, so unlimited width could cause problems.
+ * */
+const Content = styled.main`
   display: flex;
-  max-width: 1200px;
+  max-width: 1300px;
   width: 100vw;
   flex: 1;
 `;
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <MainContainer>
+    <Container>
+      <Navbar />
       <Content>{children || <Outlet />}</Content>
-    </MainContainer>
+    </Container>
   );
 };
 

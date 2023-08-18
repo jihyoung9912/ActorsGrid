@@ -4,7 +4,7 @@ import reset from 'styled-reset';
 const GlobalStyles = createGlobalStyle`
   ${reset}
   body {
-    padding: 0 !important;
+    padding: 0;
   }
   
   html {
