@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SearchBox, NavbarLogo } from 'components/Navbar';
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -6,20 +7,15 @@ const NavbarContainer = styled.div`
   align-items: center;
   padding: 0 2rem;
   width: 100%;
-  height: 4rem;
+  height: 4.5rem;
   background-color: #172540;
-  color: #cee0ee;
-`;
-
-const NavbarLogo = styled.img`
-  width: 9rem;
-  height: 100%;
 `;
 
 const Navbar = () => {
   return (
     <NavbarContainer>
-      <NavbarLogo src={`${process.env.PUBLIC_URL}/logo.svg`} alt="Chartmetric Logo" />
+      <NavbarLogo />
+      <SearchBox />
     </NavbarContainer>
   );
 };
