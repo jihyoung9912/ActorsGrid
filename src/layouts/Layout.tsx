@@ -13,8 +13,6 @@ const Content = styled.div`
   display: flex;
   max-width: 1200px;
   width: 100vw;
-  margin-top: 20px;
-  padding: 2rem;
   flex: 1;
 `;
 
