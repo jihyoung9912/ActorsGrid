@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from 'pages/Home';
-import GlobalStyles from 'styles/GlobalStyles';
+import { Home, ActorSearch } from 'pages';
 import Layout from 'layouts/Layout';
+import GlobalStyles from 'styles/GlobalStyles';
 
 const App = () => {
   return (
@@ -10,6 +10,7 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/search/:searchParams" element={<ActorSearch />} />
         </Route>
       </Routes>
     </Router>

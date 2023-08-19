@@ -11,12 +11,12 @@ const Container = styled.div`
 `;
 
 /*
- * Limit 1300px to make user-friendly UI
+ * Limit 1920px to make user-friendly UI
  * There may be so many pictures, so unlimited width could cause problems.
  * */
 const Content = styled.main`
   display: flex;
-  max-width: 1300px;
+  max-width: 1920px;
   width: 100vw;
   flex: 1;
 `;

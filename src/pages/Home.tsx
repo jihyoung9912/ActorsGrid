@@ -1,12 +1,7 @@
-import styled from 'styled-components';
-
-const HomeContainer = styled.div`
-  width: 100%;
-  background-color: red;
-`;
+import { Actors } from 'components/Actors';
 
 const Home = () => {
-  return <HomeContainer>Home</HomeContainer>;
+  return <Actors />;
 };
 
 export default Home;
