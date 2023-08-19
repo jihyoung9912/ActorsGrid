@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 import { SearchBox, NavbarLogo } from 'components/Navbar';
+import { Flex } from 'components/common';
 
-const NavbarContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const NavbarContainer = styled(Flex)`
   padding: 0 2rem;
   width: 100%;
   height: 4.5rem;
@@ -13,7 +11,7 @@ const NavbarContainer = styled.div`
 
 const Navbar = () => {
   return (
-    <NavbarContainer>
+    <NavbarContainer justifyContent="space-between" alignItems="center">
       <NavbarLogo />
       <SearchBox />
     </NavbarContainer>

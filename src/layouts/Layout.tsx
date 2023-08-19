@@ -1,14 +1,8 @@
 import { PropsWithChildren } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import { Flex } from 'components/common';
 import { Navbar } from 'components/Navbar';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-`;
 
 /*
  * Limit 1920px to make user-friendly UI
@@ -23,10 +17,10 @@ const Content = styled.main`
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <Container>
+    <Flex direction="column" alignItems="center">
       <Navbar />
       <Content>{children || <Outlet />}</Content>
-    </Container>
+    </Flex>
   );
 };
 

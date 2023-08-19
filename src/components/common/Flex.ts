@@ -4,7 +4,6 @@ interface FlexProps {
   /*
    * Reusable flexbox for top element
    */
-  display: 'flex';
   alignItems?: 'center' | 'flex-start' | 'flex-end' | 'inherit';
   justifyContent?:
     | 'flex-start'
