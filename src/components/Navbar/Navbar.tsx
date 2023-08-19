@@ -11,7 +11,7 @@ const NavbarContainer = styled(Flex)`
 
 const Navbar = () => {
   return (
-    <NavbarContainer justifyContent="space-between" alignItems="center">
+    <NavbarContainer $justify="space-between" $align="center">
       <NavbarLogo />
       <SearchBox />
     </NavbarContainer>

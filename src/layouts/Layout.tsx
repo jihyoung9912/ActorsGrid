@@ -10,14 +10,15 @@ import { Navbar } from 'components/Navbar';
  * */
 const Content = styled.main`
   display: flex;
+  flex: 1;
   max-width: 1920px;
   width: 100vw;
-  flex: 1;
+  background-color: #f5f5fc;
 `;
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <Flex direction="column" alignItems="center">
+    <Flex $direction="column">
       <Navbar />
       <Content>{children || <Outlet />}</Content>
     </Flex>

@@ -4,40 +4,34 @@ interface FlexProps {
   /*
    * Reusable flexbox for top element
    */
-  alignItems?: 'center' | 'flex-start' | 'flex-end' | 'inherit';
-  justifyContent?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'space-between'
-    | 'space-around'
-    | 'center'
-    | 'inherit';
-  direction?: 'column' | 'row';
-  flexWrap?: 'wrap' | 'nowrap' | 'reverse';
+  $align?: 'center' | 'flex-start' | 'flex-end' | 'inherit';
+  $justify?: 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'center' | 'inherit';
+  $direction?: 'column' | 'row';
+  $wrap?: 'wrap' | 'nowrap' | 'reverse';
 }
 
 export const Flex = styled.div<FlexProps>`
-  ${({ alignItems, justifyContent, direction, flexWrap }) => css`
+  ${({ $align, $justify, $direction, $wrap }) => css`
     display: flex;
 
-    ${justifyContent &&
+    ${$justify &&
     css`
-      justify-content: ${justifyContent};
+      justify-content: ${$justify};
     `}
 
-    ${alignItems &&
+    ${$align &&
     css`
-      align-items: ${alignItems};
+      align-items: ${$align};
     `}
 
-      ${direction &&
+      ${$direction &&
     css`
-      flex-direction: ${direction};
+      flex-direction: ${$direction};
     `}
 
-    ${flexWrap &&
+    ${$wrap &&
     css`
-      flex-wrap: ${flexWrap};
+      flex-wrap: ${$wrap};
     `}
   `}
 `;
