@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { Flex } from 'components/common';
 import { fetchPopularActorsList } from 'apis/apis';
 import throttle from 'utils/throttle';
-
-interface IActorData {
-  profile_path: string;
-  name: string;
-}
+import ActorModal from './ActorModal';
+import { IActorData } from 'types/IActors';
 
 const ActorCardContainer = styled(Flex)`
   width: 13rem;
@@ -43,6 +40,8 @@ const ActorNameContainer = styled(Flex)`
 const ActorCard = () => {
   const [actorsData, setActorsData] = useState<IActorData[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedActor, setSelectedActor] = useState<IActorData | null>(null);
 
   /*
    * @params pageNumber
@@ -80,10 +79,20 @@ const ActorCard = () => {
     };
   }, [handleScroll]);
 
+  // Manage Modal and provide actors data to Modal Component
+  const handleActorModal = (actor: IActorData) => {
+    setSelectedActor(actor);
+    setIsModalOpen(true);
+  };
+
   return (
     <Flex $wrap="wrap" $justify="center" $gap="1rem">
       {actorsData.map((actor, index) => (
-        <ActorCardContainer key={actor.name + index} $wrap="wrap">
+        <ActorCardContainer
+          key={actor.id + index}
+          $wrap="wrap"
+          onClick={() => handleActorModal(actor)}
+        >
           <ActorImg
             src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
             alt={actor.name}
@@ -93,6 +102,7 @@ const ActorCard = () => {
           </ActorNameContainer>
         </ActorCardContainer>
       ))}
+      {isModalOpen && <ActorModal actor={selectedActor} onClose={() => setIsModalOpen(false)} />}
     </Flex>
   );
 };
