@@ -11,7 +11,7 @@ export const fetchPopularActorsList: TFetchPopularActorsList = async (pageNumber
 };
 
 export const fetchActorsListWithKeyword: TFetchActorsListWithKeyword = async (pageNumber, name) => {
-  const url = `${searchActorUrl}?api_key=${process.env.REACT_APP_TMDB_API_KEY}}&language=en&page=${pageNumber}`;
+  const url = `${searchActorUrl}?query=${name}&language=en&page=${pageNumber}`;
 
   return await fetchApi(url);
 };

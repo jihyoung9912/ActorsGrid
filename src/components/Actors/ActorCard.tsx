@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
-import { fetchPopularActorsList } from 'apis/apis';
+import { fetchPopularActorsList, fetchActorsListWithKeyword } from 'apis/apis';
 import throttle from 'utils/throttle';
 import ActorModal from './ActorModal/ActorModal';
 import { IActorData } from 'types/IActors';
+import { SearchedText } from 'types/ISearchedText';
 
 const ActorCardContainer = styled(Flex)`
   width: 13rem;
@@ -34,7 +35,8 @@ const ActorNameContainer = styled(Flex)`
   height: 20%;
 `;
 
-const ActorCard = () => {
+const ActorCard = (props: SearchedText) => {
+  const { searchedActor } = props;
   const [actorsData, setActorsData] = useState<IActorData[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,8 +48,13 @@ const ActorCard = () => {
    */
   const fetchPopularActorsData = async (page: number) => {
     try {
-      const response = await fetchPopularActorsList(page);
-      setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
+      if (searchedActor) {
+        const response = await fetchActorsListWithKeyword(page, searchedActor);
+        setActorsData(response);
+      } else {
+        const response = await fetchPopularActorsList(page);
+        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
+      }
     } catch (error) {
       console.error('Error fetching actor data:', error);
     }
@@ -56,7 +63,7 @@ const ActorCard = () => {
   // Data Fetching when pageNumber changed
   useEffect(() => {
     fetchPopularActorsData(pageNumber);
-  }, [pageNumber]);
+  }, [searchedActor, pageNumber]);
 
   // Scrolling Events Handlers with Throttling
   const handleScroll = throttle(() => {
