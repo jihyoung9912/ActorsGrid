@@ -20,6 +20,7 @@ const ModalContainer = styled(Flex)`
   border-radius: 10px;
   border: 1px solid #cbcbcb;
   background-color: #fff;
+  overflow-y: auto;
 `;
 
 const ModalHeader = styled(Flex)`
@@ -40,14 +41,13 @@ const ModalActorImage = styled.img`
   padding: 1rem;
 `;
 
-const ModalContents = styled(Flex)`
+const ModalContents = styled.div`
   width: 50%;
   padding: 1rem;
 `;
 
 const ActorModal = (props: IActorModal) => {
   const { actor, onClose } = props;
-  console.log(actor);
   return (
     <ModalDimmer $justify="center" $align="center">
       <ModalContainer $direction="column">
