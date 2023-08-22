@@ -7,6 +7,8 @@ const ActorsContainer = styled.main`
 `;
 
 const CelebritiesLabel = styled.label`
+  display: block;
+  margin-bottom: 1.5rem;
   font-size: 2rem;
   font-weight: 600;
 `;
@@ -14,9 +16,7 @@ const CelebritiesLabel = styled.label`
 const Actors = () => {
   return (
     <ActorsContainer>
-      <div>
-        <CelebritiesLabel>Celebrities</CelebritiesLabel>
-      </div>
+      <CelebritiesLabel>Celebrities</CelebritiesLabel>
       <ActorCard />
     </ActorsContainer>
   );
