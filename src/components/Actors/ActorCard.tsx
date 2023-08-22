@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
-import { fetchPopularActorsList, fetchActorsListWithKeyword } from 'apis/apis';
+import { fetchPopularActorsList } from 'apis/apis';
 import throttle from 'utils/throttle';
 import ActorModal from './ActorModal/ActorModal';
 import { IActorData } from 'types/IActors';
-import { SearchedText } from 'types/ISearchedText';
 
 const ActorCardContainer = styled(Flex)`
   width: 13rem;
@@ -35,11 +34,9 @@ const ActorNameContainer = styled(Flex)`
   height: 20%;
 `;
 
-const ActorCard = (props: SearchedText) => {
-  const { searchedActor } = props;
+const ActorCard = () => {
   const [actorsData, setActorsData] = useState<IActorData[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
-  const [isInitialFetch, setIsInitialFetch] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedActor, setSelectedActor] = useState<IActorData | null>(null);
 
@@ -49,17 +46,8 @@ const ActorCard = (props: SearchedText) => {
    */
   const fetchPopularActorsData = async (page: number) => {
     try {
-      if (searchedActor) {
-        const response = await fetchActorsListWithKeyword(page, searchedActor);
-        if (isInitialFetch) {
-          setActorsData(response.results);
-          setIsInitialFetch(false);
-        }
-        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
-      } else {
-        const response = await fetchPopularActorsList(page);
-        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
-      }
+      const response = await fetchPopularActorsList(page);
+      setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
     } catch (error) {
       console.error('Error fetching actor data:', error);
     }
@@ -68,7 +56,7 @@ const ActorCard = (props: SearchedText) => {
   // Data Fetching when pageNumber changed
   useEffect(() => {
     fetchPopularActorsData(pageNumber);
-  }, [searchedActor, pageNumber]);
+  }, [pageNumber]);
 
   // Scrolling Events Handlers with Throttling
   const handleScroll = throttle(() => {

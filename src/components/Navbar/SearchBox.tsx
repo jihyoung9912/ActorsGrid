@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { SearchedTextProps } from 'types/ISearchedText';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SearchContainer = styled.div`
   position: relative;
@@ -30,39 +30,29 @@ const SearchLogo = styled.img`
   cursor: pointer;
 `;
 
-const SearchBox = (props: SearchedTextProps) => {
-  const { setSearchedActor } = props;
-  const [searchedTerm, setSearchedTerm] = useState('');
+const SearchBox = () => {
+  const navigate = useNavigate();
+  const [searchedActor, setSearchedActor] = useState('');
 
   const handleSearchedActor = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchedText = event.target.value;
-    setSearchedTerm(searchedText);
+    setSearchedActor(searchedText);
   };
 
-  const handleSearch = useCallback(() => {
-    setSearchedActor(searchedTerm);
-  }, [setSearchedActor, searchedTerm]);
-
-  const enterKey = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.keyCode === 13) {
-        handleSearch();
-      }
-    },
-    [handleSearch],
-  );
+  const enterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.keyCode === 13) {
+      navigate(`/search/${searchedActor}`);
+    }
+  };
 
   return (
     <SearchContainer>
-      <SearchLogo
-        src={`${process.env.PUBLIC_URL}/search.svg`}
-        alt="Search Logo"
-        onClick={handleSearch}
-      />
+      <Link to={`/search/${searchedActor}`}>
+        <SearchLogo src={`${process.env.PUBLIC_URL}/search.svg`} alt="Search Logo" />
+      </Link>
       <SearchInput
         type="search"
         placeholder="Search for a celebrities"
-        value={searchedTerm}
         onChange={(event) => handleSearchedActor(event)}
         onKeyUp={(event) => enterKey(event)}
       />

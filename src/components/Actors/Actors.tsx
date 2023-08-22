@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Flex } from 'components/common';
-import { SearchedText } from 'types/ISearchedText';
 import ActorCard from './ActorCard';
 
 const ActorsContainer = styled(Flex)`
@@ -16,14 +15,11 @@ const CelebritiesLabel = styled.label`
   font-weight: 600;
 `;
 
-const Actors = (props: SearchedText) => {
-  const { searchedActor } = props;
+const Actors = () => {
   return (
     <ActorsContainer $wrap="wrap" $justify="flex-start" $align="center">
-      <CelebritiesLabel>
-        {searchedActor ? `Search for a ${searchedActor}` : 'Celebrities'}
-      </CelebritiesLabel>
-      <ActorCard searchedActor={searchedActor} />
+      <CelebritiesLabel>Celebrities</CelebritiesLabel>
+      <ActorCard />
     </ActorsContainer>
   );
 };
