@@ -5,7 +5,6 @@ import ActorCard from './ActorCard';
 const ActorsContainer = styled(Flex)`
   width: 100%;
   padding: 2rem;
-  gap: 1rem;
 `;
 
 const CelebritiesLabel = styled.label`

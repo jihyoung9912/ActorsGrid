@@ -12,7 +12,6 @@ interface IActorData {
 const ActorCardContainer = styled(Flex)`
   width: 13rem;
   height: 20rem;
-  margin: 1rem;
   box-shadow:
     -10px -10px 15px 0px #f6f6f6,
     10px 10px 15px 0px #cecece;
@@ -36,7 +35,7 @@ const ActorImg = styled.img`
 
 const ActorNameContainer = styled(Flex)`
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   width: 100%;
   height: 20%;
 `;
@@ -82,7 +81,7 @@ const ActorCard = () => {
   }, [handleScroll]);
 
   return (
-    <Flex $wrap="wrap" $justify="flex-start">
+    <Flex $wrap="wrap" $justify="center" $gap="1rem">
       {actorsData.map((actor, index) => (
         <ActorCardContainer key={actor.name + index} $wrap="wrap">
           <ActorImg

@@ -8,10 +8,11 @@ interface FlexProps {
   $justify?: 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'center' | 'inherit';
   $direction?: 'column' | 'row';
   $wrap?: 'wrap' | 'nowrap' | 'reverse';
+  $gap?: string;
 }
 
 export const Flex = styled.div<FlexProps>`
-  ${({ $align, $justify, $direction, $wrap }) => css`
+  ${({ $align, $justify, $direction, $wrap, $gap }) => css`
     display: flex;
 
     ${$justify &&
@@ -32,6 +33,11 @@ export const Flex = styled.div<FlexProps>`
     ${$wrap &&
     css`
       flex-wrap: ${$wrap};
+    `}
+
+    ${$gap &&
+    css`
+      gap: ${$gap};
     `}
   `}
 `;
