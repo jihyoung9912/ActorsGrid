@@ -20,7 +20,9 @@ const Actors = (props: SearchedText) => {
   const { searchedActor } = props;
   return (
     <ActorsContainer $wrap="wrap" $justify="flex-start" $align="center">
-      <CelebritiesLabel>Celebrities</CelebritiesLabel>
+      <CelebritiesLabel>
+        {searchedActor ? `Search for a ${searchedActor}` : 'Celebrities'}
+      </CelebritiesLabel>
       <ActorCard searchedActor={searchedActor} />
     </ActorsContainer>
   );

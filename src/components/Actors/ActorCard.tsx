@@ -39,6 +39,7 @@ const ActorCard = (props: SearchedText) => {
   const { searchedActor } = props;
   const [actorsData, setActorsData] = useState<IActorData[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [isInitialFetch, setIsInitialFetch] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedActor, setSelectedActor] = useState<IActorData | null>(null);
 
@@ -50,7 +51,11 @@ const ActorCard = (props: SearchedText) => {
     try {
       if (searchedActor) {
         const response = await fetchActorsListWithKeyword(page, searchedActor);
-        setActorsData(response);
+        if (isInitialFetch) {
+          setActorsData(response.results);
+          setIsInitialFetch(false);
+        }
+        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
       } else {
         const response = await fetchPopularActorsList(page);
         setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
