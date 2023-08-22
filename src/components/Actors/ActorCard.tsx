@@ -1,5 +1,12 @@
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
+import { fetchPopularActorsList } from 'apis/apis';
+
+interface IActorData {
+  profile_path: string;
+  name: string;
+}
 
 const ActorCardContainer = styled(Flex)`
   width: 13rem;
@@ -13,6 +20,7 @@ const ActorCardContainer = styled(Flex)`
   //  inset -7px -7px 5px 0px #f6f6f6,
   //  inset 7px 7px 5px 0px #cecece;
   transition: 0.5s all ease-in-out;
+  margin: 1rem;
 `;
 
 const ActorImg = styled.img`
@@ -29,14 +37,40 @@ const ActorNameContainer = styled(Flex)`
   height: 20%;
 `;
 
-const ActorCard = () => {
+const ActorCard: React.FC = () => {
+  const [actorsData, setActorsData] = useState<IActorData[]>([]);
+
+  useEffect(() => {
+    if (!actorsData.length) {
+      fetchPopularActorsData();
+    }
+  }, [actorsData]);
+
+  const fetchPopularActorsData = async () => {
+    try {
+      const response = await fetchPopularActorsList(1); // Fetch actors data using your fetchPopularActorsList function
+      setActorsData(response.results);
+    } catch (error) {
+      console.error('Error fetching actor data:', error);
+    }
+  };
+
+  console.log(actorsData);
+
   return (
-    <ActorCardContainer $wrap="wrap">
-      <ActorImg />
-      <ActorNameContainer $justify="center" $align="center">
-        <h1>Actor Name</h1>
-      </ActorNameContainer>
-    </ActorCardContainer>
+    <Flex $wrap="wrap" $justify="flex-start">
+      {actorsData.map((actor, index) => (
+        <ActorCardContainer key={index} $wrap="wrap">
+          <ActorImg
+            src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+            alt={actor.name}
+          />
+          <ActorNameContainer $justify="center" $align="center">
+            <h1>{actor.name}</h1>
+          </ActorNameContainer>
+        </ActorCardContainer>
+      ))}
+    </Flex>
   );
 };
 

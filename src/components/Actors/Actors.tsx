@@ -21,13 +21,6 @@ const Actors = () => {
     <ActorsContainer $wrap="wrap" $justify="flex-start" $align="center">
       <CelebritiesLabel>Celebrities</CelebritiesLabel>
       <ActorCard />
-      <ActorCard />
-      <ActorCard />
-      <ActorCard />
-      <ActorCard />
-      <ActorCard />
-      <ActorCard />
-      <ActorCard />
     </ActorsContainer>
   );
 };
