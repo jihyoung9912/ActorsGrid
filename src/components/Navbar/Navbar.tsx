@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { SearchBox, NavbarLogo } from 'components/Navbar';
 import { Flex } from 'components/common';
+import { SearchedTextProps } from 'types/ISearchedText';
 
 const NavbarContainer = styled(Flex)`
   padding: 0 2rem;
@@ -9,11 +10,12 @@ const NavbarContainer = styled(Flex)`
   background-color: #172540;
 `;
 
-const Navbar = () => {
+const Navbar = (props: SearchedTextProps) => {
+  const { setSearchedActor } = props;
   return (
     <NavbarContainer $justify="space-between" $align="center">
       <NavbarLogo />
-      <SearchBox />
+      <SearchBox setSearchedActor={setSearchedActor} />
     </NavbarContainer>
   );
 };
