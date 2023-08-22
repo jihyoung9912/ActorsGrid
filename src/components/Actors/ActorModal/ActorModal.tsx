@@ -24,6 +24,7 @@ const ModalContainer = styled(Flex)`
 `;
 
 const ModalHeader = styled(Flex)`
+  width: 100%;
   padding: 1rem;
   font-weight: 800;
   font-size: 20px;
@@ -37,19 +38,23 @@ const CancelIcon = styled.img`
 
 const ModalActorImage = styled.img`
   width: 45%;
+  min-width: 300px;
   padding: 1rem;
 `;
 
 const ModalContents = styled.div`
   width: 50%;
   padding: 1rem;
+  @media (max-width: 635px) {
+    width: 100%;
+  }
 `;
 
 const ActorModal = (props: IActorModal) => {
   const { actor, onClose } = props;
   return (
     <ModalDimmer $justify="center" $align="center">
-      <ModalContainer $direction="column">
+      <ModalContainer $wrap="wrap">
         <ModalHeader $justify="space-between" $align="center">
           <h1>{actor?.name}</h1>
           <CancelIcon
@@ -58,7 +63,7 @@ const ActorModal = (props: IActorModal) => {
             onClick={onClose}
           />
         </ModalHeader>
-        <Flex $wrap="wrap">
+        <Flex $wrap="wrap" $justify="center" $align="center">
           <ModalActorImage
             src={`https://image.tmdb.org/t/p/w500/${actor?.profile_path}`}
             alt={actor?.name}
