@@ -36,8 +36,7 @@ const CancelIcon = styled.img`
 `;
 
 const ModalActorImage = styled.img`
-  width: 50%;
-  height: 80%;
+  width: 45%;
   padding: 1rem;
 `;
 

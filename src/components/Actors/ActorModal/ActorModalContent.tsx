@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Flex } from 'components/common';
 import { IActorModalContent } from 'types/IActors';
-import React from 'react';
 
 const ActorContentContainer = styled(Flex)`
   margin-bottom: 1rem;
@@ -17,16 +16,14 @@ const ActorContentInfo = styled.span`
 `;
 
 const ActorKnownForImg = styled.img`
-  width: 90%;
-  transition: 0.3s all ease-in-out;
-  cursor: pointer;
-  &:hover {
-    transform: translateX(-5%);
-  }
+  width: 10rem;
+  height: 7rem;
+  margin-bottom: 1rem;
 `;
 
 const ActorModalContent = (actor: IActorModalContent) => {
   const actorInfo = actor.actor;
+  console.log(actorInfo);
   return (
     <>
       <ActorContentContainer $gap="8px">
@@ -42,10 +39,13 @@ const ActorModalContent = (actor: IActorModalContent) => {
         <ActorContentInfo>{actorInfo?.known_for_department}</ActorContentInfo>
       </ActorContentContainer>
       {actorInfo?.known_for.map((data: any) => (
-        <ActorKnownForImg
-          src={`https://image.tmdb.org/t/p/w500/${data?.backdrop_path}`}
-          alt={actorInfo.name}
-        />
+        <Flex $gap="8px" $align="center">
+          <ActorKnownForImg
+            src={`https://image.tmdb.org/t/p/w500/${data?.backdrop_path}`}
+            alt={actorInfo.name}
+          />
+          <ActorContentInfo>{data?.original_title}</ActorContentInfo>
+        </Flex>
       ))}
     </>
   );
