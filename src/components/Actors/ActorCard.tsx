@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Flex } from 'components/common';
 import { fetchPopularActorsList } from 'apis/apis';
 import throttle from 'utils/throttle';
-import ActorModal from './ActorModal';
+import ActorModal from './ActorModal/ActorModal';
 import { IActorData } from 'types/IActors';
 
 const ActorCardContainer = styled(Flex)`
@@ -14,9 +14,6 @@ const ActorCardContainer = styled(Flex)`
     10px 10px 15px 0px #cecece;
   border-radius: 13px;
   background-color: #f0f0f3;
-  //box-shadow:
-  //  inset -7px -7px 5px 0px #f6f6f6,
-  //  inset 7px 7px 5px 0px #cecece;
   transition: 0.2s all ease-in-out;
   cursor: pointer;
   &:hover {

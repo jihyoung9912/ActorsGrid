@@ -8,3 +8,12 @@ export interface IActorData {
   popularity: number;
   profile_path: string;
 }
+
+export interface IActorModal {
+  actor: IActorData | null;
+  onClose: () => void;
+}
+
+export interface IActorModalContent {
+  actor: IActorData | null;
+}

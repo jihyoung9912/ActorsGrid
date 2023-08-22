@@ -1,12 +1,7 @@
 import styled from 'styled-components';
-import { Flex } from '../common';
-import { IActorData } from 'types/IActors';
-import React from 'react';
-
-interface IActorModal {
-  actor: IActorData | null;
-  onClose: () => void;
-}
+import { Flex } from 'components/common';
+import { IActorModal } from 'types/IActors';
+import ActorModalContent from './ActorModalContent';
 
 const ModalDimmer = styled(Flex)`
   position: fixed;
@@ -46,7 +41,7 @@ const ModalActorImage = styled.img`
 `;
 
 const ModalContents = styled(Flex)`
-  width: 40%;
+  width: 50%;
   padding: 1rem;
 `;
 
@@ -58,15 +53,19 @@ const ActorModal = (props: IActorModal) => {
       <ModalContainer $direction="column">
         <ModalHeader $justify="space-between" $align="center">
           <h1>{actor?.name}</h1>
-          <CancelIcon src={`${process.env.PUBLIC_URL}/cancel.svg`} alt="Cancel Button" />
+          <CancelIcon
+            src={`${process.env.PUBLIC_URL}/cancel.svg`}
+            alt="Cancel Button"
+            onClick={onClose}
+          />
         </ModalHeader>
-        <Flex $wrap="wrap" $justify="center" $align="center">
+        <Flex $wrap="wrap">
           <ModalActorImage
             src={`https://image.tmdb.org/t/p/w500/${actor?.profile_path}`}
             alt={actor?.name}
           />
-          <ModalContents $justify="center" $align="center">
-            a1d1d
+          <ModalContents>
+            <ActorModalContent actor={actor} />
           </ModalContents>
         </Flex>
       </ModalContainer>
