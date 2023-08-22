@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex } from '../common';
+import { Flex } from 'components/common';
 
 const ActorCardContainer = styled(Flex)`
   width: 13rem;
@@ -8,6 +8,7 @@ const ActorCardContainer = styled(Flex)`
   box-shadow:
     -10px -10px 15px 0px #f6f6f6,
     10px 10px 15px 0px #cecece;
+  border-radius: 13px;
   //box-shadow:
   //  inset -7px -7px 5px 0px #f6f6f6,
   //  inset 7px 7px 5px 0px #cecece;
@@ -17,6 +18,7 @@ const ActorCardContainer = styled(Flex)`
 const ActorImg = styled.img`
   width: 100%;
   height: 80%;
+  border-radius: 13px;
   background-color: black;
 `;
 
