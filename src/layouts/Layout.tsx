@@ -13,7 +13,7 @@ const Content = styled.main`
   flex: 1;
   max-width: 1920px;
   width: 100vw;
-  background-color: #f0f0f3;
+  background-color: ${(props) => props.theme.backgroundPrimary};
 `;
 
 const Layout = ({ children }: PropsWithChildren) => {

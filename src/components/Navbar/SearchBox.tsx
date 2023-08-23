@@ -9,16 +9,16 @@ const SearchContainer = styled.div`
 const SearchInput = styled.input`
   width: 13.5rem;
   padding: 10px 15px 10px 35px;
-  border: #fff solid 2px;
+  border: ${(props) => props.theme.white} solid 2px;
   border-radius: 10px;
   background-color: transparent;
   transition: 0.5s all ease-in-out;
   font-size: 14px;
-  color: #cee0ee;
+  color: ${(props) => props.theme.fontSecondary};
   &:focus {
     width: 15.5rem;
-    background-color: #fff;
-    color: #555;
+    background-color: ${(props) => props.theme.white};
+    color: ${(props) => props.theme.fontTerritory};
   }
 `;
 
@@ -39,12 +39,14 @@ const SearchBox = (props: SearchedTextProps) => {
     setSearchedTerm(searchedText);
   };
 
+  // callback 풀기
   const handleSearch = useCallback(() => {
     setSearchedActor(searchedTerm);
   }, [setSearchedActor, searchedTerm]);
 
   const enterKey = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
+      // 수정
       if (event.keyCode === 13) {
         handleSearch();
       }
@@ -52,6 +54,8 @@ const SearchBox = (props: SearchedTextProps) => {
     [handleSearch],
   );
 
+  //onChange onKeyUp hanlder 수정
+  // css palette 쓰기, px 수정
   return (
     <SearchContainer>
       <SearchLogo

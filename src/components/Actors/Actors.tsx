@@ -23,12 +23,15 @@ const CelebritiesLabel = styled.label`
 const Actors = (props: SearchedText) => {
   const { searchedActor } = props;
   const [actorsData, setActorsData] = useState<IActorData[]>([]);
+  // isLoading hook으로 분리
   const [isLoading, setIsLoading] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
 
   /*
    * @params pageNumber
    * Fetch Popular Actors data with page number and also searchedActor
+   * hook으로 분리
+   * 에러 처리 react error boundary
    */
   const fetchPopularActorsData = async (page: number) => {
     setIsLoading(false);
@@ -47,6 +50,7 @@ const Actors = (props: SearchedText) => {
   };
 
   // Reset ActorsData and pageNumber when searchedActor changes
+  // Hook으로 분리
   useEffect(() => {
     const fetchData = () => {
       setActorsData([]);

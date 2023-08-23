@@ -9,7 +9,7 @@ const ModalDimmer = styled(Flex)`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: ${(props) => props.theme.backgroundDimmer};
 `;
 
 const ModalContainer = styled(Flex)`
@@ -18,8 +18,8 @@ const ModalContainer = styled(Flex)`
   min-width: 400px;
   min-height: 100px;
   border-radius: 10px;
-  border: 1px solid #cbcbcb;
-  background-color: #fff;
+  border: 1px solid ${(props) => props.theme.modalPrimary};
+  background-color: ${(props) => props.theme.modalSecondary};
   overflow-y: auto;
 `;
 
@@ -28,7 +28,7 @@ const ModalHeader = styled(Flex)`
   padding: 1rem;
   font-weight: 800;
   font-size: 20px;
-  border-bottom: 1px solid #cbcbcb;
+  border-bottom: 1px solid ${(props) => props.theme.dividerPrimary};
 `;
 
 const CancelIcon = styled.img`

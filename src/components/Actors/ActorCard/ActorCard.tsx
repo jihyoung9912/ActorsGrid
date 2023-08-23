@@ -8,11 +8,9 @@ import { IActorData } from 'types/IActors';
 const ActorCardContainer = styled(Flex)`
   width: 12rem;
   height: 22rem;
-  box-shadow:
-    -10px -10px 15px 0px #f6f6f6,
-    10px 10px 15px 0px #cecece;
   border-radius: 13px;
-  background-color: #f0f0f3;
+  box-shadow: ${(props) => props.theme.modalPrimary};
+  background-color: ${(props) => props.theme.backgroundPrimary};
   transition: 0.2s all ease-in-out;
   cursor: pointer;
   &:hover {
@@ -66,7 +64,7 @@ const ActorCard = (props: any) => {
             </ActorNameContainer>
           </ActorCardContainer>
         ) : (
-          <SkeletonCard />
+          <SkeletonCard key={actor.id + actor.name + index} />
         ),
       )}
       {isModalOpen && <ActorModal actor={selectedActor} onClose={() => setIsModalOpen(false)} />}

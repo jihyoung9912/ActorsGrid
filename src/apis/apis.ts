@@ -1,5 +1,5 @@
 import fetchApi from 'utils/fetchAPI';
-import { popularActorsUrl, searchActorUrl } from 'constants/urls';
+import { popularActorsUrl, searchActorUrl } from 'constants/URLS';
 
 type TFetchPopularActorsList = (pageNumber: number) => Promise<any>;
 type TFetchActorsListWithKeyword = (pageNumber: number, name: string) => Promise<any>;
