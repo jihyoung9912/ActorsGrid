@@ -11,6 +11,7 @@ interface IActorCard {
 }
 
 const ActorCardContainer = styled(FlexWrapper)`
+  position: relative;
   width: 12rem;
   @media (max-width: 465px) {
     width: 45%;
@@ -24,6 +25,18 @@ const ActorCardContainer = styled(FlexWrapper)`
   &:hover {
     transform: scale(1.05);
   }
+`;
+
+const ActorPopularity = styled(FlexWrapper)`
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-weight: 600;
+  border: 1px solid ${(props) => props.theme.black};
+  background-color: ${(props) => props.theme.backgroundPrimary};
 `;
 
 const ActorImg = styled.img`
@@ -62,6 +75,9 @@ const ActorCard = (props: IActorCard) => {
             $wrap="wrap"
             onClick={() => handleActorModal(actor)}
           >
+            <ActorPopularity $justify="center" $align="center">
+              {Math.round(actor.popularity)}
+            </ActorPopularity>
             <ActorImg
               src={
                 actor.profile_path

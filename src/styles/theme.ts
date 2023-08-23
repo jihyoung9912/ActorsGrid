@@ -5,6 +5,7 @@ const theme = {
   backgroundSecondary: '#172540',
 
   white: '#fff',
+  black: '#000',
 
   modalPrimary: '#cbcbcb',
 
