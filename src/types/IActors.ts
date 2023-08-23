@@ -1,3 +1,10 @@
+export interface IActorResponse {
+  page: number;
+  results: IActorData[];
+  total_pages: number;
+  total_results: number;
+}
+
 export interface IActorData {
   adult: boolean;
   gender: number;

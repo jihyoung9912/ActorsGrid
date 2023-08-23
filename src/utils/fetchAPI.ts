@@ -1,6 +1,6 @@
-import { IActorData } from 'types/IActors';
+import { IActorResponse } from 'types/IActors';
 
-type TFetchApi = (url: string) => Promise<IActorData>;
+type TFetchApi = (url: string) => Promise<IActorResponse>;
 
 const fetchApi: TFetchApi = async (url) => {
   const options = {

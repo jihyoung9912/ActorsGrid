@@ -1,9 +1,9 @@
 import fetchApi from 'utils/fetchAPI';
 import { popularActorsUrl, searchActorUrl } from 'constants/URLS';
-import { IActorData } from 'types/IActors';
+import { IActorResponse } from 'types/IActors';
 
-type TFetchPopularActorsList = (pageNumber: number) => Promise<IActorData>;
-type TFetchActorsListWithKeyword = (pageNumber: number, name: string) => Promise<IActorData>;
+type TFetchPopularActorsList = (pageNumber: number) => Promise<IActorResponse>;
+type TFetchActorsListWithKeyword = (pageNumber: number, name: string) => Promise<IActorResponse>;
 
 export const fetchPopularActorsList: TFetchPopularActorsList = async (pageNumber) => {
   const url = `${popularActorsUrl}?&language=en&page=${pageNumber}`;

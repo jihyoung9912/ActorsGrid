@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { fetchActorsListWithKeyword, fetchPopularActorsList } from 'apis/apis';
-import { useSearchContext } from '../../context/useSearchContext';
-import { IActorData } from '../../types/IActors';
+import { useSearchContext } from 'context/useSearchContext';
+import { IActorData, IActorResponse } from 'types/IActors';
 
 const useFetchActorsData = () => {
   const { searchedActor } = useSearchContext();
@@ -11,9 +11,10 @@ const useFetchActorsData = () => {
   const fetchPopularActorsData = async (page: number) => {
     setIsLoading(false);
     try {
-      let response: any;
+      let response: IActorResponse;
       if (searchedActor) {
         response = await fetchActorsListWithKeyword(page, searchedActor);
+        console.log(response);
       } else {
         response = await fetchPopularActorsList(page);
       }
