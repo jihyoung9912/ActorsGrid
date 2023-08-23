@@ -5,6 +5,11 @@ import ActorModal from '../ActorModal/ActorModal';
 import SkeletonCard from '../ActorCardSkeleton/SkeletonCard';
 import { IActorData } from 'types/IActors';
 
+interface IActorCard {
+  actorsData: IActorData[];
+  isLoading: boolean;
+}
+
 const ActorCardContainer = styled(FlexWrapper)`
   width: 12rem;
   @media (max-width: 465px) {
@@ -37,7 +42,7 @@ const ActorNameContainer = styled(FlexWrapper)`
   font-weight: 600;
 `;
 
-const ActorCard = (props: any) => {
+const ActorCard = (props: IActorCard) => {
   const { actorsData, isLoading } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedActor, setSelectedActor] = useState<IActorData | null>(null);
