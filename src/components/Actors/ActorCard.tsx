@@ -6,7 +6,7 @@ import { IActorData } from 'types/IActors';
 
 const ActorCardContainer = styled(Flex)`
   width: 13rem;
-  height: 20rem;
+  height: 24rem;
   box-shadow:
     -10px -10px 15px 0px #f6f6f6,
     10px 10px 15px 0px #cecece;
@@ -47,7 +47,7 @@ const ActorCard = (props: any) => {
     <Flex $wrap="wrap" $justify="center" $gap="1rem">
       {actorsData.map((actor: IActorData, index: number) => (
         <ActorCardContainer
-          key={actor.id + index}
+          key={actor.id + actor.name + index}
           $wrap="wrap"
           onClick={() => handleActorModal(actor)}
         >

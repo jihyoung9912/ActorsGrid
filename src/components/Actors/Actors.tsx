@@ -45,11 +45,11 @@ const Actors = (props: SearchedText) => {
 
   // Reset ActorsData and pageNumber when searchedActor changes
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       setActorsData([]);
       setPageNumber(1);
       // Fetch with page number 1
-      await fetchPopularActorsData(1);
+      fetchPopularActorsData(1);
     };
     fetchData();
   }, [searchedActor]);
@@ -67,7 +67,7 @@ const Actors = (props: SearchedText) => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
       setPageNumber((prevPageNumber) => prevPageNumber + 1);
     }
-  }, 500);
+  }, 400);
 
   // Manage scrolling Events
   useEffect(() => {
