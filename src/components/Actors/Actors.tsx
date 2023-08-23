@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
-import { SearchedText } from 'types/ISearchedText';
 import { IActorData } from 'types/IActors';
 import { fetchPopularActorsList, fetchActorsListWithKeyword } from 'apis/apis';
 import throttle from 'utils/throttle';
 import ActorCard from './ActorCard/ActorCard';
+import { useSearchContext } from 'context/useSearchContext';
+import { useDataFetchingOnPageChange, useFetchActorsData, useFetchAndResetData } from 'hooks';
 
 const ActorsContainer = styled(Flex)`
   width: 100%;
@@ -20,53 +21,14 @@ const CelebritiesLabel = styled.label`
   font-weight: 600;
 `;
 
-const Actors = (props: SearchedText) => {
-  const { searchedActor } = props;
-  const [actorsData, setActorsData] = useState<IActorData[]>([]);
-  // isLoading hook으로 분리
-  const [isLoading, setIsLoading] = useState(true);
+const Actors = () => {
+  const { searchedActor } = useSearchContext();
   const [pageNumber, setPageNumber] = useState(1);
+  const resetPageNumber = () => setPageNumber(1);
 
-  /*
-   * @params pageNumber
-   * Fetch Popular Actors data with page number and also searchedActor
-   * hook으로 분리
-   * 에러 처리 react error boundary
-   */
-  const fetchPopularActorsData = async (page: number) => {
-    setIsLoading(false);
-    try {
-      if (searchedActor) {
-        const response = await fetchActorsListWithKeyword(page, searchedActor);
-        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
-      } else {
-        const response = await fetchPopularActorsList(page);
-        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
-      }
-    } catch (error) {
-      console.error('Error fetching actor data:', error);
-    }
-    setIsLoading(true);
-  };
-
-  // Reset ActorsData and pageNumber when searchedActor changes
-  // Hook으로 분리
-  useEffect(() => {
-    const fetchData = () => {
-      setActorsData([]);
-      setPageNumber(1);
-      // Fetch with page number 1
-      fetchPopularActorsData(1);
-    };
-    fetchData();
-  }, [searchedActor]);
-
-  // Data Fetching when pageNumber is not 1 and  changed
-  useEffect(() => {
-    if (pageNumber > 1) {
-      fetchPopularActorsData(pageNumber);
-    }
-  }, [pageNumber]);
+  const { actorsData, setActorsData, isLoading, fetchPopularActorsData } = useFetchActorsData();
+  useFetchAndResetData(setActorsData, resetPageNumber, fetchPopularActorsData, searchedActor);
+  useDataFetchingOnPageChange(pageNumber, fetchPopularActorsData);
 
   // Scrolling Events Handlers with Throttling
   const handleScroll = throttle(() => {
@@ -84,11 +46,11 @@ const Actors = (props: SearchedText) => {
     };
   }, [handleScroll]);
 
+  const pageTitle = searchedActor ? `Search for a ${searchedActor}` : 'Celebrities';
+
   return (
     <ActorsContainer $wrap="wrap" $justify="flex-start" $align="center">
-      <CelebritiesLabel>
-        {searchedActor ? `Search for a ${searchedActor}` : 'Celebrities'}
-      </CelebritiesLabel>
+      <CelebritiesLabel>{pageTitle}</CelebritiesLabel>
       <Flex $wrap="wrap" $justify="flex-start" $align="center">
         <ActorCard actorsData={actorsData} isLoading={isLoading} />
       </Flex>

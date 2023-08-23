@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <SearchProvider>
       <Navbar />
-      {/*<Actors searchedActor={searchedActor} />*/}
+      <Actors />
     </SearchProvider>
   );
 };
