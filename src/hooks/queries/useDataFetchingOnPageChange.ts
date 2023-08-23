@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 
-const useDataFetchingOnPageChange = (pageNumber: any, fetchDataFn: any) => {
+const useDataFetchingOnPageChange = (
+  pageNumber: number,
+  fetchDataFn: (pageNumber: number) => void,
+) => {
   useEffect(() => {
     if (pageNumber > 1) {
       fetchDataFn(pageNumber);
