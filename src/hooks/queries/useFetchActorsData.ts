@@ -7,17 +7,19 @@ const useFetchActorsData = () => {
   const { searchedActor } = useSearchContext();
   const [actorsData, setActorsData] = useState<IActorData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   const fetchPopularActorsData = async (page: number) => {
     setIsLoading(false);
+    let response: IActorResponse;
     try {
-      let response: IActorResponse;
       if (searchedActor) {
         response = await fetchActorsListWithKeyword(page, searchedActor);
-        console.log(response);
       } else {
         response = await fetchPopularActorsList(page);
       }
+      let isPageOver = response.page >= response.total_pages;
+      setHasNextPage(!isPageOver);
       setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
     } catch (error) {
       console.error('Error fetching actor data:', error);
@@ -25,7 +27,7 @@ const useFetchActorsData = () => {
     setIsLoading(true);
   };
 
-  return { actorsData, setActorsData, isLoading, fetchPopularActorsData }; // Include fetchPopularActorsData in the return object
+  return { hasNextPage, actorsData, setActorsData, isLoading, fetchPopularActorsData }; // Include fetchPopularActorsData in the return object
 };
 
 export default useFetchActorsData;

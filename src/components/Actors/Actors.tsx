@@ -30,15 +30,17 @@ const Actors = () => {
   const resetPageNumber = () => setPageNumber(1);
   const resetActorsData = () => setActorsData([]);
 
-  const { actorsData, setActorsData, isLoading, fetchPopularActorsData } = useFetchActorsData();
+  const { hasNextPage, actorsData, setActorsData, isLoading, fetchPopularActorsData } =
+    useFetchActorsData();
   useFetchAndResetData(resetActorsData, resetPageNumber, fetchPopularActorsData, searchedActor);
   useDataFetchingOnPageChange(pageNumber, fetchPopularActorsData);
 
-  const loadNextPage = () => {
-    setPageNumber((prevPageNumber) => prevPageNumber + 1);
+  const increasePageNumber = () => {
+    if (hasNextPage) {
+      setPageNumber((prevPageNumber) => prevPageNumber + 1);
+    }
   };
-
-  useScrollPagination(loadNextPage, 500);
+  useScrollPagination(increasePageNumber, 500);
 
   const pageTitle = searchedActor ? `Search for a ${searchedActor}` : 'Celebrities';
   const isActorData = actorsData.length;
