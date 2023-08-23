@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Flex } from 'components/common';
+import { FlexWrapper } from 'components/common';
 import { IActorModalContent } from 'types/IActors';
 
-const ActorContentContainer = styled(Flex)`
+const ActorContentContainer = styled(FlexWrapper)`
   margin-bottom: 1rem;
 `;
 
@@ -38,7 +38,7 @@ const ActorModalContent = (actor: IActorModalContent) => {
         <ActorContentInfo>{actorInfo?.known_for_department}</ActorContentInfo>
       </ActorContentContainer>
       {actorInfo?.known_for.map((data, index) => (
-        <Flex $gap="8px" $align="center" key={data?.backdrop_path + index.toString()}>
+        <FlexWrapper $gap="8px" $align="center" key={data?.backdrop_path + index.toString()}>
           <ActorKnownForImg
             src={
               data?.backdrop_path
@@ -48,7 +48,7 @@ const ActorModalContent = (actor: IActorModalContent) => {
             alt={actorInfo.name}
           />
           <ActorContentInfo>{data?.original_title}</ActorContentInfo>
-        </Flex>
+        </FlexWrapper>
       ))}
     </>
   );

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Flex } from 'components/common';
+import { FlexWrapper } from 'components/common';
 import ActorCard from './ActorCard/ActorCard';
 import { useSearchContext } from 'context/useSearchContext';
 import {
@@ -10,7 +10,7 @@ import {
   useScrollPagination,
 } from 'hooks';
 
-const ActorsContainer = styled(Flex)`
+const ActorsContainer = styled(FlexWrapper)`
   width: 100%;
   padding: 2rem;
 `;
@@ -44,9 +44,9 @@ const Actors = () => {
   return (
     <ActorsContainer $wrap="wrap" $justify="flex-start" $align="center">
       <CelebritiesLabel>{pageTitle}</CelebritiesLabel>
-      <Flex $wrap="wrap" $justify="flex-start" $align="center">
+      <FlexWrapper $wrap="wrap" $justify="flex-start" $align="center">
         <ActorCard actorsData={actorsData} isLoading={isLoading} />
-      </Flex>
+      </FlexWrapper>
     </ActorsContainer>
   );
 };

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Flex } from 'components/common';
+import { FlexWrapper } from 'components/common';
 import ActorModal from '../ActorModal/ActorModal';
 import SkeletonCard from '../ActorCardSkeleton/SkeletonCard';
 import { IActorData } from 'types/IActors';
 
-const ActorCardContainer = styled(Flex)`
+const ActorCardContainer = styled(FlexWrapper)`
   width: 12rem;
   @media (max-width: 465px) {
     width: 45%;
@@ -27,7 +27,7 @@ const ActorImg = styled.img`
   border-radius: 13px 13px 0 0;
 `;
 
-const ActorNameContainer = styled(Flex)`
+const ActorNameContainer = styled(FlexWrapper)`
   width: 100%;
   height: 20%;
   font-size: 1.1rem;
@@ -49,7 +49,7 @@ const ActorCard = (props: any) => {
   };
 
   return (
-    <Flex $wrap="wrap" $justify="flex-start" $gap="1rem">
+    <FlexWrapper $wrap="wrap" $justify="flex-start" $gap="1rem">
       {actorsData.map((actor: IActorData, index: number) =>
         isLoading ? (
           <ActorCardContainer
@@ -74,7 +74,7 @@ const ActorCard = (props: any) => {
         ),
       )}
       {isModalOpen && <ActorModal actor={selectedActor} onClose={() => setIsModalOpen(false)} />}
-    </Flex>
+    </FlexWrapper>
   );
 };
 

@@ -11,7 +11,7 @@ interface FlexProps {
   $gap?: string;
 }
 
-export const Flex = styled.div<FlexProps>`
+export const FlexWrapper = styled.div<FlexProps>`
   ${({ $align, $justify, $direction, $wrap, $gap }) => css`
     display: flex;
 

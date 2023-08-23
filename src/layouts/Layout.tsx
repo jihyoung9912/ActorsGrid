@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { Flex } from 'components/common';
+import { FlexWrapper } from 'components/common';
 
 /*
  * Limit 1920px to make user-friendly UI
@@ -18,9 +18,9 @@ const Content = styled.main`
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <Flex>
+    <FlexWrapper>
       <Content>{children || <Outlet />}</Content>
-    </Flex>
+    </FlexWrapper>
   );
 };
 

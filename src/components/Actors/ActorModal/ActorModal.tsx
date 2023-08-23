@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Flex } from 'components/common';
+import { FlexWrapper } from 'components/common';
 import { IActorModal } from 'types/IActors';
 import ActorModalContent from './ActorModalContent';
 
-const ModalDimmer = styled(Flex)`
+const ModalDimmer = styled(FlexWrapper)`
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@ const ModalDimmer = styled(Flex)`
   background-color: ${(props) => props.theme.backgroundDimmer};
 `;
 
-const ModalContainer = styled(Flex)`
+const ModalContainer = styled(FlexWrapper)`
   max-width: 800px;
   max-height: 600px;
   min-width: 400px;
@@ -23,7 +23,7 @@ const ModalContainer = styled(Flex)`
   background-color: ${(props) => props.theme.backgroundPrimary};
 `;
 
-const ModalHeader = styled(Flex)`
+const ModalHeader = styled(FlexWrapper)`
   width: 100%;
   padding: 1rem;
   font-weight: 800;
@@ -63,7 +63,7 @@ const ActorModal = (props: IActorModal) => {
             onClick={onClose}
           />
         </ModalHeader>
-        <Flex $wrap="wrap" $justify="center" $align="center">
+        <FlexWrapper $wrap="wrap" $justify="center" $align="center">
           <ModalActorImage
             src={
               actor?.profile_path
@@ -75,7 +75,7 @@ const ActorModal = (props: IActorModal) => {
           <ModalContents>
             <ActorModalContent actor={actor} />
           </ModalContents>
-        </Flex>
+        </FlexWrapper>
       </ModalContainer>
     </ModalDimmer>
   );

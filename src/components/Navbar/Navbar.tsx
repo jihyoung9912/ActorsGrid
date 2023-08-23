@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { SearchBox, NavbarLogo } from 'components/Navbar';
-import { Flex } from 'components/common';
+import { FlexWrapper } from 'components/common';
 import { useSearchContext } from 'context/useSearchContext';
 
-const NavbarContainer = styled(Flex)`
+const NavbarContainer = styled(FlexWrapper)`
   padding: 0 2rem;
   width: 100%;
   height: 4.5rem;

@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { Flex } from 'components/common';
+import { FlexWrapper } from 'components/common';
 
 const skeletonAnimation = keyframes`
   0% {
@@ -10,7 +10,7 @@ const skeletonAnimation = keyframes`
   }
 `;
 
-const SkeletonActorCardContainer = styled(Flex)`
+const SkeletonActorCardContainer = styled(FlexWrapper)`
   width: 12rem;
   height: 22rem;
   border-radius: 13px;
@@ -23,9 +23,9 @@ const SkeletonActorCardContainer = styled(Flex)`
 
 const SkeletonCard = () => {
   return (
-    <Flex $wrap="wrap" $justify="flex-start" $gap="1rem">
+    <FlexWrapper $wrap="wrap" $justify="flex-start" $gap="1rem">
       <SkeletonActorCardContainer />
-    </Flex>
+    </FlexWrapper>
   );
 };
 
