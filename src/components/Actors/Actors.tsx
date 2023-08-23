@@ -6,7 +6,6 @@ import { IActorData } from 'types/IActors';
 import { fetchPopularActorsList, fetchActorsListWithKeyword } from 'apis/apis';
 import throttle from 'utils/throttle';
 import ActorCard from './ActorCard/ActorCard';
-import SkeletonCard from './ActorCardSkeleton/SkeletonCard';
 
 const ActorsContainer = styled(Flex)`
   width: 100%;
@@ -86,8 +85,9 @@ const Actors = (props: SearchedText) => {
       <CelebritiesLabel>
         {searchedActor ? `Search for a ${searchedActor}` : 'Celebrities'}
       </CelebritiesLabel>
-      <ActorCard actorsData={actorsData} isLoading={isLoading} />
-      <SkeletonCard />
+      <Flex $wrap="wrap" $justify="flex-start" $align="center">
+        <ActorCard actorsData={actorsData} isLoading={isLoading} />
+      </Flex>
     </ActorsContainer>
   );
 };

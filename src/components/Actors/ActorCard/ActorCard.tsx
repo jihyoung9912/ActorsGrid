@@ -6,8 +6,8 @@ import SkeletonCard from '../ActorCardSkeleton/SkeletonCard';
 import { IActorData } from 'types/IActors';
 
 const ActorCardContainer = styled(Flex)`
-  width: 13rem;
-  height: 24rem;
+  width: 12rem;
+  height: 22rem;
   box-shadow:
     -10px -10px 15px 0px #f6f6f6,
     10px 10px 15px 0px #cecece;
