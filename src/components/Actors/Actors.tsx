@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
-import throttle from 'utils/throttle';
 import ActorCard from './ActorCard/ActorCard';
 import { useSearchContext } from 'context/useSearchContext';
 import {
@@ -27,6 +26,7 @@ const CelebritiesLabel = styled.label`
 const Actors = () => {
   const { searchedActor } = useSearchContext();
   const [pageNumber, setPageNumber] = useState(1);
+
   const resetPageNumber = () => setPageNumber(1);
 
   const { actorsData, setActorsData, isLoading, fetchPopularActorsData } = useFetchActorsData();

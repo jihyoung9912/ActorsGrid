@@ -9,8 +9,7 @@ const ActorCardContainer = styled(Flex)`
   width: 12rem;
   height: 22rem;
   border-radius: 13px;
-  box-shadow: ${(props) => props.theme.modalPrimary};
-  background-color: ${(props) => props.theme.backgroundPrimary};
+  box-shadow: ${(props) => props.theme.boxShadowPrimary};
   transition: 0.2s all ease-in-out;
   cursor: pointer;
   &:hover {
@@ -25,10 +24,10 @@ const ActorImg = styled.img`
 `;
 
 const ActorNameContainer = styled(Flex)`
-  font-size: 16px;
-  font-weight: 600;
   width: 100%;
   height: 20%;
+  font-size: 16px;
+  font-weight: 600;
 `;
 
 const ActorCard = (props: any) => {

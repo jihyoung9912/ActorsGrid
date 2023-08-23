@@ -19,7 +19,7 @@ const ModalContainer = styled(Flex)`
   min-height: 100px;
   border-radius: 10px;
   border: 1px solid ${(props) => props.theme.modalPrimary};
-  background-color: ${(props) => props.theme.modalSecondary};
+  background-color: ${(props) => props.theme.backgroundPrimary};
   overflow-y: auto;
 `;
 
