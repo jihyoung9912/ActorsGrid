@@ -1,6 +1,10 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
 import { SearchedText } from 'types/ISearchedText';
+import { IActorData } from 'types/IActors';
+import { fetchPopularActorsList, fetchActorsListWithKeyword } from 'apis/apis';
+import throttle from 'utils/throttle';
 import ActorCard from './ActorCard';
 
 const ActorsContainer = styled(Flex)`
@@ -18,12 +22,67 @@ const CelebritiesLabel = styled.label`
 
 const Actors = (props: SearchedText) => {
   const { searchedActor } = props;
+  const [actorsData, setActorsData] = useState<IActorData[]>([]);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  /*
+   * @params pageNumber
+   * Fetch Popular Actors data with page number and also searchedActor
+   */
+  const fetchPopularActorsData = async (page: number) => {
+    try {
+      if (searchedActor) {
+        const response = await fetchActorsListWithKeyword(page, searchedActor);
+        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
+      } else {
+        const response = await fetchPopularActorsList(page);
+        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
+      }
+    } catch (error) {
+      console.error('Error fetching actor data:', error);
+    }
+  };
+
+  // Reset ActorsData and pageNumber when searchedActor changes
+  useEffect(() => {
+    const fetchData = async () => {
+      setActorsData([]);
+      setPageNumber(1);
+      // Fetch with page number 1
+      await fetchPopularActorsData(1);
+    };
+    fetchData();
+  }, [searchedActor]);
+
+  // Data Fetching when pageNumber is not 1 and  changed
+  useEffect(() => {
+    if (pageNumber > 1) {
+      fetchPopularActorsData(pageNumber);
+    }
+  }, [pageNumber]);
+
+  // Scrolling Events Handlers with Throttling
+  const handleScroll = throttle(() => {
+    // Increase pageNumber for next page
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+      setPageNumber((prevPageNumber) => prevPageNumber + 1);
+    }
+  }, 500);
+
+  // Manage scrolling Events
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
   return (
     <ActorsContainer $wrap="wrap" $justify="flex-start" $align="center">
       <CelebritiesLabel>
         {searchedActor ? `Search for a ${searchedActor}` : 'Celebrities'}
       </CelebritiesLabel>
-      <ActorCard searchedActor={searchedActor} />
+      <ActorCard actorsData={actorsData} />
     </ActorsContainer>
   );
 };

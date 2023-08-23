@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
-import { fetchPopularActorsList, fetchActorsListWithKeyword } from 'apis/apis';
-import throttle from 'utils/throttle';
 import ActorModal from './ActorModal/ActorModal';
 import { IActorData } from 'types/IActors';
-import { SearchedText } from 'types/ISearchedText';
 
 const ActorCardContainer = styled(Flex)`
   width: 13rem;
@@ -35,58 +32,10 @@ const ActorNameContainer = styled(Flex)`
   height: 20%;
 `;
 
-const ActorCard = (props: SearchedText) => {
-  const { searchedActor } = props;
-  const [actorsData, setActorsData] = useState<IActorData[]>([]);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [isInitialFetch, setIsInitialFetch] = useState(true);
+const ActorCard = (props: any) => {
+  const { actorsData } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedActor, setSelectedActor] = useState<IActorData | null>(null);
-
-  /*
-   * @params pageNumber
-   * Fetch Popular Actors data with page number
-   */
-  const fetchPopularActorsData = async (page: number) => {
-    try {
-      if (searchedActor) {
-        const response = await fetchActorsListWithKeyword(page, searchedActor);
-        if (isInitialFetch) {
-          setActorsData(response.results);
-          setIsInitialFetch(false);
-        }
-        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
-      } else {
-        const response = await fetchPopularActorsList(page);
-        setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
-      }
-    } catch (error) {
-      console.error('Error fetching actor data:', error);
-    }
-  };
-
-  // Data Fetching when pageNumber changed
-  useEffect(() => {
-    fetchPopularActorsData(pageNumber);
-  }, [searchedActor, pageNumber]);
-
-  // Scrolling Events Handlers with Throttling
-  const handleScroll = throttle(() => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-      // Increase pageNumber for next page
-      fetchPopularActorsData(pageNumber + 1);
-      // Update pageNumber state
-      setPageNumber((prevPageNumber) => prevPageNumber + 1);
-    }
-  }, 500);
-
-  // Manage scrolling Events
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [handleScroll]);
 
   // Manage Modal and provide actors data to Modal Component
   const handleActorModal = (actor: IActorData) => {
@@ -96,7 +45,7 @@ const ActorCard = (props: SearchedText) => {
 
   return (
     <Flex $wrap="wrap" $justify="center" $gap="1rem">
-      {actorsData.map((actor, index) => (
+      {actorsData.map((actor: IActorData, index: number) => (
         <ActorCardContainer
           key={actor.id + index}
           $wrap="wrap"
