@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
-import { IActorData } from 'types/IActors';
-import { fetchPopularActorsList, fetchActorsListWithKeyword } from 'apis/apis';
 import throttle from 'utils/throttle';
 import ActorCard from './ActorCard/ActorCard';
 import { useSearchContext } from 'context/useSearchContext';
-import { useDataFetchingOnPageChange, useFetchActorsData, useFetchAndResetData } from 'hooks';
+import {
+  useDataFetchingOnPageChange,
+  useFetchActorsData,
+  useFetchAndResetData,
+  useScrollPagination,
+} from 'hooks';
 
 const ActorsContainer = styled(Flex)`
   width: 100%;
@@ -30,21 +33,11 @@ const Actors = () => {
   useFetchAndResetData(setActorsData, resetPageNumber, fetchPopularActorsData, searchedActor);
   useDataFetchingOnPageChange(pageNumber, fetchPopularActorsData);
 
-  // Scrolling Events Handlers with Throttling
-  const handleScroll = throttle(() => {
-    // Increase pageNumber for next page
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-      setPageNumber((prevPageNumber) => prevPageNumber + 1);
-    }
-  }, 400);
+  const loadNextPage = () => {
+    setPageNumber((prevPageNumber) => prevPageNumber + 1);
+  };
 
-  // Manage scrolling Events
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [handleScroll]);
+  useScrollPagination(loadNextPage, 500);
 
   const pageTitle = searchedActor ? `Search for a ${searchedActor}` : 'Celebrities';
 
