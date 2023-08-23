@@ -41,13 +41,20 @@ const Actors = () => {
   useScrollPagination(loadNextPage, 500);
 
   const pageTitle = searchedActor ? `Search for a ${searchedActor}` : 'Celebrities';
+  const isActorData = actorsData.length;
 
   return (
     <ActorsContainer $wrap="wrap" $justify="flex-start" $align="center">
-      <CelebritiesLabel>{pageTitle}</CelebritiesLabel>
-      <FlexWrapper $wrap="wrap" $justify="flex-start" $align="center">
-        <ActorCard actorsData={actorsData} isLoading={isLoading} />
-      </FlexWrapper>
+      {isActorData ? (
+        <>
+          <CelebritiesLabel>{pageTitle}</CelebritiesLabel>
+          <FlexWrapper $wrap="wrap" $justify="flex-start" $align="center">
+            <ActorCard actorsData={actorsData} isLoading={isLoading} />
+          </FlexWrapper>
+        </>
+      ) : (
+        <CelebritiesLabel>{`There's no celebrity named ${searchedActor}`} !!</CelebritiesLabel>
+      )}
     </ActorsContainer>
   );
 };
