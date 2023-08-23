@@ -7,12 +7,12 @@ const ActorContentContainer = styled(Flex)`
 `;
 
 const ActorContentTitle = styled.h1`
-  font-size: 20px;
+  font-size: 1.3rem;
   font-weight: 700;
 `;
 
 const ActorContentInfo = styled.span`
-  font-size: 17px;
+  font-size: 1.1rem;
 `;
 
 const ActorKnownForImg = styled.img`

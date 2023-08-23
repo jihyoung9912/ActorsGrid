@@ -27,12 +27,12 @@ const ModalHeader = styled(Flex)`
   width: 100%;
   padding: 1rem;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 1.5rem;
   border-bottom: 1px solid ${(props) => props.theme.dividerPrimary};
 `;
 
 const CancelIcon = styled.img`
-  width: 28px;
+  width: 1.5rem;
   cursor: pointer;
 `;
 
