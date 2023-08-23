@@ -65,7 +65,11 @@ const ActorModal = (props: IActorModal) => {
         </ModalHeader>
         <Flex $wrap="wrap" $justify="center" $align="center">
           <ModalActorImage
-            src={`https://image.tmdb.org/t/p/w500/${actor?.profile_path}`}
+            src={
+              actor?.profile_path
+                ? `https://image.tmdb.org/t/p/w500/${actor?.profile_path}`
+                : `${process.env.PUBLIC_URL}/noImage.png`
+            }
             alt={actor?.name}
           />
           <ModalContents>

@@ -40,7 +40,11 @@ const ActorModalContent = (actor: IActorModalContent) => {
       {actorInfo?.known_for.map((data, index) => (
         <Flex $gap="8px" $align="center" key={data?.backdrop_path + index.toString()}>
           <ActorKnownForImg
-            src={`https://image.tmdb.org/t/p/w500/${data?.backdrop_path}`}
+            src={
+              data?.backdrop_path
+                ? `https://image.tmdb.org/t/p/w500/${data?.backdrop_path}`
+                : `${process.env.PUBLIC_URL}/noImage.png`
+            }
             alt={actorInfo.name}
           />
           <ActorContentInfo>{data?.original_title}</ActorContentInfo>

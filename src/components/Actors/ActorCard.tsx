@@ -52,7 +52,11 @@ const ActorCard = (props: any) => {
           onClick={() => handleActorModal(actor)}
         >
           <ActorImg
-            src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+            src={
+              actor.profile_path
+                ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+                : `${process.env.PUBLIC_URL}/noImage.png`
+            }
             alt={actor.name}
           />
           <ActorNameContainer $justify="center" $align="center">
