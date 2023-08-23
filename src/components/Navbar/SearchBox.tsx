@@ -44,13 +44,11 @@ const SearchBox = () => {
   };
 
   const enterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    // 수정
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       handleSearch();
     }
   };
 
-  //onChange onKeyUp hanlder 수정
   return (
     <SearchContainer>
       <SearchLogo
