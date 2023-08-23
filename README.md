@@ -70,6 +70,13 @@ The top right `search bar` allows you to search for the celebrity you want.
 
 ## ❌ Probs & How I resolved 'em
 
+🤔 Problem that the useEffect function was executed twice during the initial mount.
+
+💡 How I resolved 'em: 
+- Resolved by knowing from official documents that React runs useEffect twice in Strict Mode for purity testing.
+
+--- 
+
 🤔 Inefficient to separate the search page from the main page.
 
 💡 How I resolved 'em: 
