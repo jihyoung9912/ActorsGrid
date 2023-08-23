@@ -78,14 +78,38 @@ The top right `search bar` allows you to search for the celebrity you want.
 
 --- 
 
-🤔 Inefficient to separate the search page from the main page.
+🤔 Difficult to write a clean code because there were many Handling exceptions.
 
 💡 How I resolved 'em: 
-- Managed search text through `Scoped Context`to minimize prop drilling and re-rendering.
-- Dynamically managed from Main Page to Search Component using context.
+- Divided the hook folder into query and util folders.
+- Made a code that is `easy to read` by importing data fetching hook from query folder and infinite scroll hook from util folder
 
 --- 
 
+
+🤔 Various colors were needed, and there were many changes in the beginning.
+
+💡 How I resolved 'em: 
+- Divided background-color, box-shadow, and font-color into `color palette`
+- Accessed props through ThemeProvider for `easy maintenance`
+
+--- 
+
+
+🤔 Wanted to show the size of the card components and modals in the right size for all devices.
+
+💡 How I resolved 'em: 
+- Using `media-query, rem, and %`, the appropriate UI can be viewed on all devices.
+
+--- 
+
+
+🤔 There were too many components using Flex.
+
+💡 How I resolved 'em: 
+- Created `Reusabe FlexWrapper` component to access properties to minimize duplicate code.
+
+--- 
 
 
 ## 📀 Setup Locally
