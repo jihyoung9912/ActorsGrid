@@ -1,4 +1,4 @@
-# 👨🏼‍⚖️ Actors (Chartmetric take home challenge in Frontend part)
+# 👨🏼‍⚖️ Actors (Chartmetric take home challenge)
 
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -18,15 +18,21 @@
 ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 
 
+
+
 ## 📄 Description
 Bring Data about famous actors from `TMDB` and show them. 
 In the upper left corner, you can see the `Poularity` of the actors, and you can click to see the `details and famous works`.
 The top right `search bar` allows you to search for the celebrity you want.
 
 
+
+
 ## 🖥 Demo
 
-* `📼 Live Demo Site:` <a href="https://actorsofleo.netlify.app/" target="\_blank">https://actorsofleo.netlify.app/ </a>
+* `📼 Live Demo Site:` <a href="https://actorsofleo.netlify.app/"target="\_blank">https://actorsofleo.netlify.app/ </a>
+
+
 
 ## 🎠 Feature
 
@@ -47,6 +53,7 @@ The top right `search bar` allows you to search for the celebrity you want.
 - [x] **Actors Data Fetching**
 - [x] **Actors Data Fetching with Infinite Scroll with Throttling**
 - [x] **Search**
+- [x] **ErrorBoundary for Data Fetching**
 
 #### 👩‍🌾 ETC
 - [x] **Prettier**
@@ -58,6 +65,60 @@ The top right `search bar` allows you to search for the celebrity you want.
 - [ ] **Infinite Scroll Optimize**
 - [ ] **Font Optimize**
 - [ ] **Modal Skeleton UI**
+
+
+
+## ❌ Probs & How I resolved 'em
+
+🤔 Inefficient to separate the search page from the main page.
+
+💡 How I resolved 'em: 
+- Managed search text through `Scoped Context`to minimize prop drilling and re-rendering.
+- Dynamically managed from Main Page to Search Component using context.
+
+--- 
+
+🤔 Inefficient to separate the search page from the main page.
+
+💡 How I resolved 'em: 
+- Managed search text through `Scoped Context`to minimize prop drilling and re-rendering.
+- Dynamically managed from Main Page to Search Component using context.
+
+--- 
+
+
+
+## 📀 Setup Locally
+
+
+```bash
+git clone https://github.com/jihyoung9912/ActorsGrid/
+yarn install
+yarn start
+```
+
+
+
+## 📚 Used packages
+
+    "@testing-library/jest-dom": "^6.0.1",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.41",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "prettier": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.11",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
+    "styled-components": "^6.0.7",
+    "styled-reset": "^4.5.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
 
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
