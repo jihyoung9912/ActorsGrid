@@ -1,5 +1,5 @@
-export { default as useDisplaySize } from './useDisplaySize';
-export { default as useFetchActorsData } from './useFetchActorsData';
-export { default as useDataFetchingOnPageChange } from './useDataFetchingOnPageChange';
-export { default as useFetchAndResetData } from './useFetchAndResetData';
-export { default as useScrollPagination } from './useScrollPagination';
+export { default as useDisplaySize } from './utils/useDisplaySize';
+export { default as useFetchActorsData } from './queries/useFetchActorsData';
+export { default as useDataFetchingOnPageChange } from './queries/useDataFetchingOnPageChange';
+export { default as useFetchAndResetData } from './queries/useFetchAndResetData';
+export { default as useScrollPagination } from './utils/useScrollPagination';

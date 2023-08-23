@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchActorsListWithKeyword, fetchPopularActorsList } from 'apis/apis';
-import { useSearchContext } from '../context/useSearchContext';
-import { IActorData } from '../types/IActors';
+import { useSearchContext } from '../../context/useSearchContext';
+import { IActorData } from '../../types/IActors';
 
 const useFetchActorsData = () => {
   const { searchedActor } = useSearchContext();
