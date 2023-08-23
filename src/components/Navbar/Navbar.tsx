@@ -12,9 +12,12 @@ const NavbarContainer = styled(Flex)`
 
 const Navbar = (props: SearchedTextProps) => {
   const { setSearchedActor } = props;
+
   return (
     <NavbarContainer $justify="space-between" $align="center">
-      <NavbarLogo />
+      <button onClick={() => setSearchedActor('')}>
+        <NavbarLogo />
+      </button>
       <SearchBox setSearchedActor={setSearchedActor} />
     </NavbarContainer>
   );
