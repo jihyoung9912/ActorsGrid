@@ -5,7 +5,8 @@ import { SearchedText } from 'types/ISearchedText';
 import { IActorData } from 'types/IActors';
 import { fetchPopularActorsList, fetchActorsListWithKeyword } from 'apis/apis';
 import throttle from 'utils/throttle';
-import ActorCard from './ActorCard';
+import ActorCard from './ActorCard/ActorCard';
+import SkeletonCard from './ActorCardSkeleton/SkeletonCard';
 
 const ActorsContainer = styled(Flex)`
   width: 100%;
@@ -23,6 +24,7 @@ const CelebritiesLabel = styled.label`
 const Actors = (props: SearchedText) => {
   const { searchedActor } = props;
   const [actorsData, setActorsData] = useState<IActorData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
 
   /*
@@ -30,6 +32,7 @@ const Actors = (props: SearchedText) => {
    * Fetch Popular Actors data with page number and also searchedActor
    */
   const fetchPopularActorsData = async (page: number) => {
+    setIsLoading(false);
     try {
       if (searchedActor) {
         const response = await fetchActorsListWithKeyword(page, searchedActor);
@@ -41,6 +44,7 @@ const Actors = (props: SearchedText) => {
     } catch (error) {
       console.error('Error fetching actor data:', error);
     }
+    setIsLoading(true);
   };
 
   // Reset ActorsData and pageNumber when searchedActor changes
@@ -82,7 +86,8 @@ const Actors = (props: SearchedText) => {
       <CelebritiesLabel>
         {searchedActor ? `Search for a ${searchedActor}` : 'Celebrities'}
       </CelebritiesLabel>
-      <ActorCard actorsData={actorsData} />
+      <ActorCard actorsData={actorsData} isLoading={isLoading} />
+      <SkeletonCard />
     </ActorsContainer>
   );
 };

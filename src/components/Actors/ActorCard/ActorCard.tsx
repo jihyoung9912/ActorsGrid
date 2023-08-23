@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Flex } from 'components/common';
-import ActorModal from './ActorModal/ActorModal';
+import ActorModal from '../ActorModal/ActorModal';
+import SkeletonCard from '../ActorCardSkeleton/SkeletonCard';
 import { IActorData } from 'types/IActors';
 
 const ActorCardContainer = styled(Flex)`
@@ -33,7 +34,7 @@ const ActorNameContainer = styled(Flex)`
 `;
 
 const ActorCard = (props: any) => {
-  const { actorsData } = props;
+  const { actorsData, isLoading } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedActor, setSelectedActor] = useState<IActorData | null>(null);
 
@@ -44,26 +45,30 @@ const ActorCard = (props: any) => {
   };
 
   return (
-    <Flex $wrap="wrap" $justify="center" $gap="1rem">
-      {actorsData.map((actor: IActorData, index: number) => (
-        <ActorCardContainer
-          key={actor.id + actor.name + index}
-          $wrap="wrap"
-          onClick={() => handleActorModal(actor)}
-        >
-          <ActorImg
-            src={
-              actor.profile_path
-                ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
-                : `${process.env.PUBLIC_URL}/noImage.png`
-            }
-            alt={actor.name}
-          />
-          <ActorNameContainer $justify="center" $align="center">
-            <h1>{actor.name}</h1>
-          </ActorNameContainer>
-        </ActorCardContainer>
-      ))}
+    <Flex $wrap="wrap" $justify="flex-start" $gap="1rem">
+      {actorsData.map((actor: IActorData, index: number) =>
+        isLoading ? (
+          <ActorCardContainer
+            key={actor.id + actor.name + index}
+            $wrap="wrap"
+            onClick={() => handleActorModal(actor)}
+          >
+            <ActorImg
+              src={
+                actor.profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+                  : `${process.env.PUBLIC_URL}/noImage.png`
+              }
+              alt={actor.name}
+            />
+            <ActorNameContainer $justify="center" $align="center">
+              <h1>{actor.name}</h1>
+            </ActorNameContainer>
+          </ActorCardContainer>
+        ) : (
+          <SkeletonCard />
+        ),
+      )}
       {isModalOpen && <ActorModal actor={selectedActor} onClose={() => setIsModalOpen(false)} />}
     </Flex>
   );
