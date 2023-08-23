@@ -23,7 +23,6 @@ const ActorKnownForImg = styled.img`
 
 const ActorModalContent = (actor: IActorModalContent) => {
   const actorInfo = actor.actor;
-  console.log(actorInfo);
   return (
     <>
       <ActorContentContainer $gap="8px">

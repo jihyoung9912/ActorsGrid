@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { Flex } from 'components/common';
 import { fetchPopularActorsList } from 'apis/apis';
-import throttle from 'utils/throttle';
-import ActorModal from './ActorModal/ActorModal';
+import ActorModal from 'components/Actors/ActorModal/ActorModal';
 import { ActorCardContainer, ActorImg, ActorNameContainer } from 'components/Actors/ActorComponent';
+import throttle from 'utils/throttle';
 import { IActorData } from 'types/IActors';
 
-const ActorCard = () => {
+const ActorSearchCard = () => {
   const [actorsData, setActorsData] = useState<IActorData[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -77,4 +76,4 @@ const ActorCard = () => {
   );
 };
 
-export default ActorCard;
+export default ActorSearchCard;

@@ -1,17 +1,16 @@
 import { useParams } from 'react-router-dom';
-import ActorCard from './ActorCard';
+import ActorSearchCard from './ActorSearchCard';
 import { ActorsContainer, CelebritiesLabel } from 'components/Actors/ActorComponent';
 
-const Actors = () => {
+const ActorSearchResult = () => {
   const { searchParams } = useParams();
+
   return (
     <ActorsContainer $wrap="wrap" $justify="flex-start" $align="center">
-      <CelebritiesLabel>
-        {searchParams ? `Result for ${searchParams}` : 'Celebrities'}
-      </CelebritiesLabel>
-      <ActorCard />
+      <CelebritiesLabel>Result for {searchParams}</CelebritiesLabel>
+      <ActorSearchCard />
     </ActorsContainer>
   );
 };
 
-export default Actors;
+export default ActorSearchResult;
