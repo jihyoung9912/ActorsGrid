@@ -30,7 +30,7 @@ The top right `search bar` allows you to search for the celebrity you want.
 
 ## 🖥 Demo
 
-* `📼 Live Demo Site:` <a href="https://main--actorsofleo.netlify.app/"target="\_blank">https://actorsofleo.netlify.app/ </a>
+* `📼 Live Demo Site:` <a href="https://main--actorsofleo.netlify.app" target="\_blank">https://actorsofleo.netlify.app/ </a>
 
 
 
