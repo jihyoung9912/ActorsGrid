@@ -1,5 +1,6 @@
-// TODO: Change Type
-type TFetchApi = (url: string) => Promise<any>;
+import { IActorData } from 'types/IActors';
+
+type TFetchApi = (url: string) => Promise<IActorData>;
 
 const fetchApi: TFetchApi = async (url) => {
   const options = {
