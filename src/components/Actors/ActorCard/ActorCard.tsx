@@ -7,6 +7,10 @@ import { IActorData } from 'types/IActors';
 
 const ActorCardContainer = styled(Flex)`
   width: 12rem;
+  @media (max-width: 465px) {
+    width: 45%;
+    height: 19rem;
+  }
   height: 22rem;
   border-radius: 13px;
   box-shadow: ${(props) => props.theme.boxShadowPrimary};
@@ -20,13 +24,16 @@ const ActorCardContainer = styled(Flex)`
 const ActorImg = styled.img`
   width: 100%;
   height: 80%;
-  border-radius: 13px;
+  border-radius: 13px 13px 0 0;
 `;
 
 const ActorNameContainer = styled(Flex)`
   width: 100%;
   height: 20%;
-  font-size: 16px;
+  font-size: 1.1rem;
+  @media (max-width: 465px) {
+    font-size: 0.8rem;
+  }
   font-weight: 600;
 `;
 

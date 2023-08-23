@@ -18,9 +18,9 @@ const ModalContainer = styled(Flex)`
   min-width: 400px;
   min-height: 100px;
   border-radius: 10px;
+  overflow-y: auto;
   border: 1px solid ${(props) => props.theme.modalPrimary};
   background-color: ${(props) => props.theme.backgroundPrimary};
-  overflow-y: auto;
 `;
 
 const ModalHeader = styled(Flex)`
