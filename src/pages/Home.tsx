@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Actors } from 'components/Actors';
 import { Navbar } from 'components/Navbar';
+import { SearchProvider } from 'context/useSearchContext';
 
 const Home = () => {
   const [searchedActor, setSearchedActor] = useState('');
-  // context로 감싸서 쓰기
+  // Using Scoped Context to prevent props drilling
   return (
-    <>
+    <SearchProvider>
       <Navbar setSearchedActor={setSearchedActor} />
       <Actors searchedActor={searchedActor} />
-    </>
+    </SearchProvider>
   );
 };
 
