@@ -28,9 +28,10 @@ const Actors = () => {
   const [pageNumber, setPageNumber] = useState(1);
 
   const resetPageNumber = () => setPageNumber(1);
+  const resetActorsData = () => setActorsData([]);
 
   const { actorsData, setActorsData, isLoading, fetchPopularActorsData } = useFetchActorsData();
-  useFetchAndResetData(setActorsData, resetPageNumber, fetchPopularActorsData, searchedActor);
+  useFetchAndResetData(resetActorsData, resetPageNumber, fetchPopularActorsData, searchedActor);
   useDataFetchingOnPageChange(pageNumber, fetchPopularActorsData);
 
   const loadNextPage = () => {
