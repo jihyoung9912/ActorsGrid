@@ -22,7 +22,7 @@ const useFetchActorsData = () => {
       setHasNextPage(!isPageOver);
       setActorsData((prevActorsData) => [...prevActorsData, ...response.results]);
     } catch (error) {
-      console.error('Error fetching actor data:', error);
+      throw error;
     }
     setIsLoading(true);
   };
