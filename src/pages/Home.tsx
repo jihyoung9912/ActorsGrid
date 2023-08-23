@@ -4,12 +4,11 @@ import { Navbar } from 'components/Navbar';
 import { SearchProvider } from 'context/useSearchContext';
 
 const Home = () => {
-  const [searchedActor, setSearchedActor] = useState('');
   // Using Scoped Context to prevent props drilling
   return (
     <SearchProvider>
-      <Navbar setSearchedActor={setSearchedActor} />
-      <Actors searchedActor={searchedActor} />
+      <Navbar />
+      {/*<Actors searchedActor={searchedActor} />*/}
     </SearchProvider>
   );
 };

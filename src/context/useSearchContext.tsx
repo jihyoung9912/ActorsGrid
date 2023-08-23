@@ -1,29 +1,30 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// Define the type for the children prop it's not reusable, so define in same file
+interface SearchContextValue {
+  searchedActor: string;
+  setSearchedActor: React.Dispatch<React.SetStateAction<string>>;
+}
 interface SearchProviderProps {
   children: React.ReactNode;
 }
 
-// Create Search context
-const SearchContext = createContext<
-  | {
-      searchedActor: string;
-      setSearchedActor: React.Dispatch<React.SetStateAction<string>>;
-    }
-  | undefined
->(undefined);
+const SearchContext = createContext<SearchContextValue | undefined>(undefined);
 
-// Create a custom hook to use the context
-export const useSearchContext = () => useContext(SearchContext);
+export const useSearchContext = (): SearchContextValue => {
+  const context = useContext(SearchContext);
+  if (!context) {
+    throw new Error('useSearchContext must be used within a SearchProvider');
+  }
+  return context;
+};
 
-// Create a provider component to wrap around your app
 export const SearchProvider = ({ children }: SearchProviderProps) => {
   const [searchedActor, setSearchedActor] = useState('');
 
-  return (
-    <SearchContext.Provider value={{ searchedActor, setSearchedActor }}>
-      {children}
-    </SearchContext.Provider>
-  );
+  const value: SearchContextValue = {
+    searchedActor,
+    setSearchedActor,
+  };
+
+  return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;
 };

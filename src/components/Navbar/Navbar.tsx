@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { SearchBox, NavbarLogo } from 'components/Navbar';
 import { Flex } from 'components/common';
-import { SearchedTextProps } from 'types/ISearchedText';
+import { useSearchContext } from 'context/useSearchContext';
 
 const NavbarContainer = styled(Flex)`
   padding: 0 2rem;
@@ -10,16 +10,16 @@ const NavbarContainer = styled(Flex)`
   background-color: ${(props) => props.theme.backgroundSecondary};
 `;
 
-const Navbar = (props: SearchedTextProps) => {
-  const { setSearchedActor } = props;
-  //reset search 관심사의 분리. callback을 했을 때 성능이 왜 떨어지는지
+const Navbar = () => {
+  const { setSearchedActor } = useSearchContext();
+  const searchedActorReset = () => setSearchedActor('');
 
   return (
     <NavbarContainer $justify="space-between" $align="center">
-      <button onClick={() => setSearchedActor('')}>
+      <button onClick={searchedActorReset}>
         <NavbarLogo />
       </button>
-      <SearchBox setSearchedActor={setSearchedActor} />
+      <SearchBox />
     </NavbarContainer>
   );
 };

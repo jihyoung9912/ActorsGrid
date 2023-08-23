@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import { SearchedTextProps } from 'types/ISearchedText';
+import { useSearchContext } from 'context/useSearchContext';
 
 const SearchContainer = styled.div`
   position: relative;
@@ -30,8 +30,8 @@ const SearchLogo = styled.img`
   cursor: pointer;
 `;
 
-const SearchBox = (props: SearchedTextProps) => {
-  const { setSearchedActor } = props;
+const SearchBox = () => {
+  const { setSearchedActor } = useSearchContext();
   const [searchedTerm, setSearchedTerm] = useState('');
 
   const handleSearchedActor = (event: React.ChangeEvent<HTMLInputElement>) => {
