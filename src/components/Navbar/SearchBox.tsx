@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSearchContext } from 'context/useSearchContext';
 
@@ -8,13 +8,13 @@ const SearchContainer = styled.div`
 
 const SearchInput = styled.input`
   width: 13.5rem;
-  padding: 10px 15px 10px 35px;
+  padding: 0.6rem 0.8rem 0.6rem 2.3rem;
   border: ${(props) => props.theme.white} solid 2px;
   border-radius: 10px;
+  font-size: 0.85rem;
   background-color: transparent;
-  transition: 0.5s all ease-in-out;
-  font-size: 14px;
   color: ${(props) => props.theme.fontSecondary};
+  transition: 0.5s all ease-in-out;
   &:focus {
     width: 15.5rem;
     background-color: ${(props) => props.theme.white};
@@ -24,9 +24,9 @@ const SearchInput = styled.input`
 
 const SearchLogo = styled.img`
   position: absolute;
-  left: 10px;
-  top: 9.25px;
-  width: 20px;
+  left: 0.6rem;
+  top: 0.55rem;
+  width: 1.2rem;
   cursor: pointer;
 `;
 
@@ -39,23 +39,18 @@ const SearchBox = () => {
     setSearchedTerm(searchedText);
   };
 
-  // callback 풀기
-  const handleSearch = useCallback(() => {
+  const handleSearch = () => {
     setSearchedActor(searchedTerm);
-  }, [setSearchedActor, searchedTerm]);
+  };
 
-  const enterKey = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
-      // 수정
-      if (event.keyCode === 13) {
-        handleSearch();
-      }
-    },
-    [handleSearch],
-  );
+  const enterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    // 수정
+    if (event.keyCode === 13) {
+      handleSearch();
+    }
+  };
 
   //onChange onKeyUp hanlder 수정
-  // css palette 쓰기, px 수정
   return (
     <SearchContainer>
       <SearchLogo
@@ -67,8 +62,8 @@ const SearchBox = () => {
         type="search"
         placeholder="Search for a celebrities"
         value={searchedTerm}
-        onChange={(event) => handleSearchedActor(event)}
-        onKeyUp={(event) => enterKey(event)}
+        onChange={handleSearchedActor}
+        onKeyUp={enterKey}
       />
     </SearchContainer>
   );
