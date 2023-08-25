@@ -68,26 +68,26 @@ The top right `search bar` allows you to search for the celebrity you want.
 
 
 
-## ❌ Probs & How I resolved 'em
+## ❌ Probs & How I resolved them
 
 🤔 Problem that the useEffect function was executed twice during the initial mount.
 
-💡 How I resolved 'em: 
+💡 How I resolved it: 
 - Resolved by knowing from official documents that React runs useEffect twice in Strict Mode for purity testing.
 
 --- 
 
 🤔 Inefficient to separate the search page from the main page.
 
-💡 How I resolved 'em: 
-- Managed search text through `Scoped Context`to minimize prop drilling and re-rendering.
+💡 How I resolved it: 
+- Managed search text through `Scoped Context`to minimize props drilling and re-rendering.
 - Dynamically managed from Main Page to Search Component using context.
 
 --- 
 
 🤔 Difficult to write a clean code because there were many Handling exceptions.
 
-💡 How I resolved 'em: 
+💡 How I resolved it: 
 - Divided the hook folder into query and util folders.
 - Made a code that is `easy to read` by importing data fetching hook from query folder and infinite scroll hook from util folder
 
@@ -96,7 +96,7 @@ The top right `search bar` allows you to search for the celebrity you want.
 
 🤔 Various colors were needed, and there were many changes in the beginning.
 
-💡 How I resolved 'em: 
+💡 How I resolved it: 
 - Divided background-color, box-shadow, and font-color into `color palette`
 - Accessed props through ThemeProvider for `easy maintenance`
 
@@ -105,7 +105,7 @@ The top right `search bar` allows you to search for the celebrity you want.
 
 🤔 Wanted to show the size of the card components and modals in the right size for all devices.
 
-💡 How I resolved 'em: 
+💡 How I resolved it: 
 - Using `media-query, rem, and %`, the appropriate UI can be viewed on all devices.
 
 --- 
@@ -113,7 +113,7 @@ The top right `search bar` allows you to search for the celebrity you want.
 
 🤔 There were too many components using Flex.
 
-💡 How I resolved 'em: 
+💡 How I resolved it: 
 - Created `Reusabe FlexWrapper` component to access properties to minimize duplicate code.
 
 --- 
